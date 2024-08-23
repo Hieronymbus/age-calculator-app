@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
+import Button from "./Button";
 
 function Form(props) {
     const { setBirthDate } = props;
@@ -42,18 +42,25 @@ function Form(props) {
         e.preventDefault();
         const newErrors = {};
 
-        if (!validateDay(dayInput)) {
+
+        if(dayInput === ""){
+            newErrors.dayError = "This Field Is Required"
+        } else if (!validateDay(dayInput)) {
             newErrors.dayError = 'Enter a valid day between 1 and 31.';
-        }
-
-        if (!validateMonth(monthInput)) {
+        };
+        
+        if(monthInput === ""){
+            newErrors.monthError = "This Field Is Required"
+        }else if (!validateMonth(monthInput)) {
             newErrors.monthError = 'Enter a valid month between 1 and 12.';
-        }
-
-        if (!validateYear(yearInput)) {
+        };
+        
+        if(yearInput ===""){
+            newErrors.yearError = "This Field Is Required"
+        }else if (!validateYear(yearInput)) {
             newErrors.yearError = 'Enter a valid year before 2024.';
-        }
-
+        };
+        
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
@@ -62,45 +69,48 @@ function Form(props) {
             setMonth("");
             setYear("");
             setErrors({});
-        }
+        };
     };
 
     return (
         <form className="birth-date-form" onSubmit={submitBirthDate}>
-            <label>
+            <label className= {`form-label ${errors.dayError && "error-label"}`}>
                 DAY
                 <input 
+                    className={`form-input ${errors.dayError && "error-input"}`}
                     type="text"
                     value={dayInput}
                     onChange={updateDay}
-                    placeholder="Enter day"
+                    placeholder="DD"
                 />
                 {errors.dayError && <p className="error">{errors.dayError}</p>}
             </label>
-            <label>
+            <label className={`form-label ${errors.monthError && "error-label"}`}>
                 MONTH
                 <input
+                    className={`form-input ${errors.monthError && "error-input"}`}
                     type="text"
                     value={monthInput}
                     onChange={updateMonth}
-                    placeholder="Enter month"
+                    placeholder="MM"
                 />
                 {errors.monthError && <p className="error">{errors.monthError}</p>}
             </label>
-            <label>
+            <label className={`form-label ${errors.yearError && "error-label"}`}>
                 YEAR
                 <input
+                    className={`form-input ${errors.yearError && "error-input"}`}
                     type="text"
                     value={yearInput}
                     onChange={updateYear}
-                    placeholder="Enter year"
+                    placeholder="YYYY"
                 />
                 {errors.yearError && <p className="error">{errors.yearError}</p>}
             </label>
-            <button className="form-button" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg></button>
+            <Button /> 
         </form>
     );
-}
+};
 
 export default Form;
 

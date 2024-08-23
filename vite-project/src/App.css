@@ -1,31 +1,76 @@
-.birth-date-form {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 25px;
-    border-bottom: 2px solid black;
-}
-.main-container {
-   width: 80% ; 
-   display:flex ;
-   flex-direction: column;
-   align-items: flex-start;
-   
-}
-
-.form-button{
-    position: absolute;
-    right: 45%;
-    top: 40%;
-    background-color: aqua;
-    border-radius: 50%;
-    
-}
-
 .background-container {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;  
-  background-color: antiquewhite;
+  background-color: #f0f0f0
 }
+
+.main-container {
+  width: 60% ; 
+  display:flex ;
+  flex-direction: column;
+  align-items: center;
+  background-color:#FFFFFF;
+  padding: 50px;
+  border-radius: 30px 30px 250px 30px;
+}
+
+.birth-date-form {
+    display: flex;
+    justify-content: flex-start;
+    width: 90%;
+    gap: 20px;
+    padding-bottom: 50px;
+    border-bottom: 2px solid black;
+    position: relative;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  font-weight: bold;
+}
+
+.form-input {
+    height: 50px;
+    font-size: 20px;
+    padding-left: 15px;
+    
+}
+.form-button{
+    background-color: #864DFF;
+    border-radius: 50%; 
+    position: absolute;  
+    right:0;
+    bottom:-27px;
+    border: none;  
+}
+.form-button:hover{
+  cursor: pointer
+}
+
+.error {
+  color: red;
+  font-style: italic;
+  font-weight: lighter;
+}
+.error-label{
+  color:red; 
+}
+.error-input{
+  border: 2px solid red;
+}
+
+.age-output-container{
+  width: 90%;
+}
+.age-output {
+  font-size: 4rem;
+}
+.age-output-number {
+  color:#864DFF
+}
+
