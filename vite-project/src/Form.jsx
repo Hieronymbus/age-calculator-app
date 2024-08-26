@@ -20,59 +20,80 @@ function Form(props) {
         const inputDay = e.target.value;
         if (/^\d{0,2}$/.test(inputDay)) {
             setDay(inputDay);
+            if(errors.dayError === "Must be a valid date") {
+                setErrors({})
+            }
             setErrors(prev => ({ ...prev, dayError: "" }));
-        }
+        };
     };
 
     const updateMonth = (e) => {
         const inputMonth = e.target.value;
         if (/^\d{0,2}$/.test(inputMonth)) {
             setMonth(inputMonth);
+            if(errors.dayError === "Must be a valid date") {
+                setErrors({})
+            }
             setErrors(prev => ({ ...prev, monthError: "" }));
-        }
+        };
     };
 
     const updateYear = (e) => {
         const inputYear = e.target.value;
         if (/^\d{0,4}$/.test(inputYear)) {
             setYear(inputYear);
+            if(errors.dayError === "Must be a valid date") {
+                setErrors({})
+            }
             setErrors(prev => ({ ...prev, yearError: "" }));
         }
     };
 
     const submitBirthDate = (e) => {
         e.preventDefault();
-        const newErrors = {};
+        let newErrors = {};
 
 
         if(dayInput === ""){
-            newErrors.dayError = "This Field Is Required"
+            newErrors.dayError = "This field Is Required"
         } else if(monthInput == 2) {
             if (!validateDayFeb(dayInput)) {
-                newErrors.dayError = 'Enter a valid day.';
+                newErrors.dayError = 'Must be a valid day';
             };
         } else if (monthInput == 4 || monthInput == 6 || monthInput == 9 || monthInput == 11) {
             if (!validateDayThirty(dayInput)) {
-                newErrors.dayError = 'Enter a valid day.';
+                newErrors.dayError = 'Must be a valid day';
             }
         } else {
             if (!validateDay(dayInput)) {
-                newErrors.dayError = 'Enter a valid day.';
+                newErrors.dayError = 'Must be a valid day';
             };
         }
         
         if(monthInput === ""){
-            newErrors.monthError = "This Field Is Required"
+            newErrors.monthError = "This field Is Required"
         }else if (!validateMonth(monthInput)) {
-            newErrors.monthError = 'Enter a valid month. ';
+            newErrors.monthError = 'Must be a valid month';
         };
         
-        if(yearInput ===""){
-            newErrors.yearError = "This Field Is Required"
+        if(yearInput === ""){
+            newErrors.yearError = "This field Is Required"
         }else if (!validateYear(yearInput)) {
-            newErrors.yearError = 'Enter a valid year before 2024.';
+            newErrors.yearError = 'Must be in the past';
         };
         
+        if(
+            Object.keys(newErrors).length === 3 
+            && dayInput != "" 
+            && monthInput != "" 
+            && yearInput != "" 
+        ){
+            newErrors = {}
+            newErrors.dayError = "Must be a valid date"
+            newErrors.monthError = " "
+            newErrors.yearError = " "
+        }
+
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
