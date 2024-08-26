@@ -10,8 +10,8 @@ function Form(props) {
     const [yearInput, setYear] = useState("");
     const [errors, setErrors] = useState({});
 
-    const validateDay = (day) => /^(0?[1-9]|[12][0-9]|3[01])$/.test(day);
-    const validateMonth = (month) => /^(0?[1-9]|1[0-2])$/.test(month);
+    const validateDay = (day) => /^(0|0?[1-9]|[12][0-9]|3[01])$/.test(day);
+    const validateMonth = (month) => /^(0|0?[1-9]|1[0-2])$/.test(month);
     const validateYear = (year) => /^(19\d{2}|20[01]\d|202[0-4])$/.test(year);
 
     const updateDay = (e) => {
@@ -46,13 +46,13 @@ function Form(props) {
         if(dayInput === ""){
             newErrors.dayError = "This Field Is Required"
         } else if (!validateDay(dayInput)) {
-            newErrors.dayError = 'Enter a valid day between 1 and 31.';
+            newErrors.dayError = 'Enter a valid day.';
         };
         
         if(monthInput === ""){
             newErrors.monthError = "This Field Is Required"
         }else if (!validateMonth(monthInput)) {
-            newErrors.monthError = 'Enter a valid month between 1 and 12.';
+            newErrors.monthError = 'Enter a valid month. ';
         };
         
         if(yearInput ===""){
@@ -82,6 +82,7 @@ function Form(props) {
                     value={dayInput}
                     onChange={updateDay}
                     placeholder="DD"
+                    autoFocus
                 />
                 {errors.dayError && <p className="error">{errors.dayError}</p>}
             </label>

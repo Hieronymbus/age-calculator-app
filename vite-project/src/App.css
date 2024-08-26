@@ -1,3 +1,20 @@
+@font-face {
+  font-family: 'pop';
+  src: url('./assets/fonts/Poppins-Regular.ttf');
+}
+@font-face {
+  font-family: 'popBold';
+  src: url('./assets/fonts/Poppins-Bold.ttf');
+}
+@font-face {
+  font-family: 'popExtraBold';
+  src: url('./assets/fonts/Poppins-ExtraBold.ttf');
+}
+@font-face {
+  font-family: 'popItalic';
+  src: url('./assets/fonts/Poppins-Italic.ttf');
+}
+
 .background-container {
   width: 100vw;
   height: 100vh;
@@ -30,32 +47,46 @@
 .form-label {
   display: flex;
   flex-direction: column;
-  gap:10px;
-  font-weight: bold;
+  gap:15px;
+  font-family: "popBold";  
 }
 
 .form-input {
     height: 50px;
+    width: 150px;
     font-size: 20px;
+    font-family: "popBold";
     padding-left: 15px;
-    
+    border: 1px solid grey;
+    border-radius: 10px ;
+}
+.form-input:hover{
+  cursor: pointer;
+}
+.form-input:focus {
+  outline-color: #864DFF;
 }
 .form-button{
     background-color: #864DFF;
     border-radius: 50%; 
     position: absolute;  
     right:0;
-    bottom:-27px;
-    border: none;  
+    bottom:-40px;
+    border: none; 
+    height: 80px;
+    width: 80px; 
 }
 .form-button:hover{
   cursor: pointer
 }
+.form-button:active{
+  background-color: black;
+}
 
 .error {
   color: red;
-  font-style: italic;
-  font-weight: lighter;
+  font-family: "popItalic";
+  margin: 0;
 }
 .error-label{
   color:red; 
@@ -69,6 +100,8 @@
 }
 .age-output {
   font-size: 4rem;
+  margin: 0;
+  font-family: "popExtraBold";
 }
 .age-output-number {
   color:#864DFF
