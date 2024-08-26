@@ -11,12 +11,14 @@ function Form(props) {
     const [errors, setErrors] = useState({});
 
     const validateDay = (day) => /^(0|0?[1-9]|[12][0-9]|3[01])$/.test(day);
+    const validateDayFeb = (day) => /^(0|0?[1-9]|[1][0-9]|2[0-8])$/.test(day);
+    const validateDayThirty = (day) => /^(0|0?[1-9]|[12][0-9]|3[0])$/.test(day);
     const validateMonth = (month) => /^(0|0?[1-9]|1[0-2])$/.test(month);
     const validateYear = (year) => /^(19\d{2}|20[01]\d|202[0-4])$/.test(year);
 
     const updateDay = (e) => {
         const inputDay = e.target.value;
-        if (inputDay === "" || validateDay(inputDay)) {
+        if (/^\d{0,2}$/.test(inputDay)) {
             setDay(inputDay);
             setErrors(prev => ({ ...prev, dayError: "" }));
         }
@@ -24,7 +26,7 @@ function Form(props) {
 
     const updateMonth = (e) => {
         const inputMonth = e.target.value;
-        if (inputMonth === "" || validateMonth(inputMonth)) {
+        if (/^\d{0,2}$/.test(inputMonth)) {
             setMonth(inputMonth);
             setErrors(prev => ({ ...prev, monthError: "" }));
         }
@@ -45,9 +47,19 @@ function Form(props) {
 
         if(dayInput === ""){
             newErrors.dayError = "This Field Is Required"
-        } else if (!validateDay(dayInput)) {
-            newErrors.dayError = 'Enter a valid day.';
-        };
+        } else if(monthInput == 2) {
+            if (!validateDayFeb(dayInput)) {
+                newErrors.dayError = 'Enter a valid day.';
+            };
+        } else if (monthInput == 4 || monthInput == 6 || monthInput == 9 || monthInput == 11) {
+            if (!validateDayThirty(dayInput)) {
+                newErrors.dayError = 'Enter a valid day.';
+            }
+        } else {
+            if (!validateDay(dayInput)) {
+                newErrors.dayError = 'Enter a valid day.';
+            };
+        }
         
         if(monthInput === ""){
             newErrors.monthError = "This Field Is Required"
