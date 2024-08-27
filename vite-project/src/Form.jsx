@@ -1,21 +1,22 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useRef } from "react";
 import Button from "./Button";
 import LabelInput from "./FormLabelAndInput";
+
 function Form(props) {
     const { setBirthDate } = props;
-
+//form states
     const [dayInput, setDay] = useState("");
     const [monthInput, setMonth] = useState("");
     const [yearInput, setYear] = useState("");
     const [errors, setErrors] = useState({});
-
+//functions for regex check validation
     const validateDay = (day) => /^(0|0?[1-9]|[12][0-9]|3[01])$/.test(day);
     const validateDayFeb = (day) => /^(0|0?[1-9]|[1][0-9]|2[0-8])$/.test(day);
     const validateDayThirty = (day) => /^(0|0?[1-9]|[12][0-9]|3[0])$/.test(day);
     const validateMonth = (month) => /^(0|0?[1-9]|1[0-2])$/.test(month);
     const validateYear = (year) => /^(19\d{2}|20[01]\d|202[0-4])$/.test(year);
-
+//update day input value with validation check
     const updateDay = (e) => {
         const inputDay = e.target.value;
         if (/^\d{0,2}$/.test(inputDay)) {
@@ -26,7 +27,7 @@ function Form(props) {
             setErrors(prev => ({ ...prev, dayError: "" }));
         };
     };
-
+//update month input value with validation check
     const updateMonth = (e) => {
         const inputMonth = e.target.value;
         if (/^\d{0,2}$/.test(inputMonth)) {
@@ -37,7 +38,7 @@ function Form(props) {
             setErrors(prev => ({ ...prev, monthError: "" }));
         };
     };
-
+//update year input value with validation check
     const updateYear = (e) => {
         const inputYear = e.target.value;
         if (/^\d{0,4}$/.test(inputYear)) {
@@ -48,10 +49,20 @@ function Form(props) {
             setErrors(prev => ({ ...prev, yearError: "" }));
         }
     };
-
+// To change the button background during enter press form submission
+    const buttonReff = useRef(null) 
+    const buttonActive = () => {
+    
+        buttonReff.current.classList.add("form-button-active")
+        setTimeout(() => buttonReff.current.classList.remove("form-button-active"), 220)
+ 
+    }
+//onSubmit function for form
     const submitBirthDate = (e) => {
         e.preventDefault();
         let newErrors = {};
+
+        buttonActive()
 
         if(dayInput === ""){
             newErrors.dayError = "This field Is Required"
@@ -78,7 +89,7 @@ function Form(props) {
         if(yearInput === ""){
             newErrors.yearError = "This field Is Required"
         }else if (!validateYear(yearInput)) {
-            newErrors.yearError = 'Must be in the past';
+            newErrors.yearError = 'Must be in the past and after 1900';
         };
         
         if(
@@ -127,7 +138,7 @@ function Form(props) {
                 onChange={updateYear}
                 placeHolder="YYYY"
             />
-            <Button /> 
+            <Button buttonReff={buttonReff}/> 
         </form>
     );
 };
