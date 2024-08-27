@@ -1,18 +1,18 @@
 @font-face {
   font-family: 'pop';
-  src: url('./assets/fonts/Poppins-Regular.ttf');
+  src: url('./fonts/Poppins-Regular.ttf');
 }
 @font-face {
   font-family: 'popBold';
-  src: url('./assets/fonts/Poppins-Bold.ttf');
+  src: url('./fonts/Poppins-Bold.ttf');
 }
 @font-face {
   font-family: 'popExtraBold';
-  src: url('./assets/fonts/Poppins-ExtraBold.ttf');
+  src: url('./fonts/Poppins-ExtraBold.ttf');
 }
 @font-face {
   font-family: 'popItalic';
-  src: url('./assets/fonts/Poppins-Italic.ttf');
+  src: url('./fonts/Poppins-Italic.ttf');
 }
 
 .background-container {
