@@ -7,8 +7,10 @@ function AgeOutput(props) {
   const [ageYears, setAgeYears] = useState("--");
   const [ageMonths, setAgeMonths] = useState("--");
   const [ageDays, setAgeDays] = useState("--");
+  const [animate,setAnimate] = useState(false);
 
   useEffect(() => {
+    
     if (day && month && year) {
 
       const currentDate = new Date();
@@ -23,23 +25,30 @@ function AgeOutput(props) {
       let exactMonths = (daysLeftMinusYears - exactDays) / 31
       let exactYears = (Math.floor(totalDays) - daysLeftMinusYears) / 365
       
+      
       setAgeDays(exactDays);
       setAgeMonths(exactMonths);
       setAgeYears(exactYears);
+     
+      setAnimate(true);
 
+      setTimeout(() => {
+        setAnimate(false)
+      }, 1000);
     }
   }, [day, month, year]);
 
+  
   return (
     <div className="age-output-container">
-      <h1 className="age-output">
-        <span className="age-output-number">{ageYears}</span> years
+      <h1 className="age-output" >
+        <span className={`age-output-number ${animate ? "fade-in" : ""}`}>{ageYears}</span> years
       </h1>
       <h1 className="age-output">
-        <span className="age-output-number">{ageMonths}</span> months
+        <span className={`age-output-number ${animate ? "fade-in" : ""}`}>{ageMonths}</span> months
       </h1>
       <h1 className="age-output">
-        <span className="age-output-number">{ageDays}</span> days
+        <span className={`age-output-number ${animate ? "fade-in" : ""}`}>{ageDays}</span> days
       </h1>
     </div>
   );
