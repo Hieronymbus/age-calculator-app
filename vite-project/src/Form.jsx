@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Button from "./Button";
-
+import LabelInput from "./FormLabelAndInput";
 function Form(props) {
     const { setBirthDate } = props;
 
@@ -52,7 +52,6 @@ function Form(props) {
     const submitBirthDate = (e) => {
         e.preventDefault();
         let newErrors = {};
-
 
         if(dayInput === ""){
             newErrors.dayError = "This field Is Required"
@@ -107,40 +106,27 @@ function Form(props) {
 
     return (
         <form className="birth-date-form" onSubmit={submitBirthDate}>
-            <label className= {`form-label ${errors.dayError && "error-label"}`}>
-                DAY
-                <input 
-                    className={`form-input ${errors.dayError && "error-input"}`}
-                    type="text"
-                    value={dayInput}
-                    onChange={updateDay}
-                    placeholder="DD"
-                    autoFocus
-                />
-                {errors.dayError && <p className="error">{errors.dayError}</p>}
-            </label>
-            <label className={`form-label ${errors.monthError && "error-label"}`}>
-                MONTH
-                <input
-                    className={`form-input ${errors.monthError && "error-input"}`}
-                    type="text"
-                    value={monthInput}
-                    onChange={updateMonth}
-                    placeholder="MM"
-                />
-                {errors.monthError && <p className="error">{errors.monthError}</p>}
-            </label>
-            <label className={`form-label ${errors.yearError && "error-label"}`}>
-                YEAR
-                <input
-                    className={`form-input ${errors.yearError && "error-input"}`}
-                    type="text"
-                    value={yearInput}
-                    onChange={updateYear}
-                    placeholder="YYYY"
-                />
-                {errors.yearError && <p className="error">{errors.yearError}</p>}
-            </label>
+            <LabelInput 
+                daysMonthsYears="DAY" 
+                error={errors.dayError}
+                value={dayInput}
+                onChange={updateDay}
+                placeHolder="DD"
+            />
+            <LabelInput 
+                daysMonthsYears="MONTH" 
+                error={errors.monthError}
+                value={monthInput}
+                onChange={updateMonth}
+                placeHolder="MM"
+            />
+            <LabelInput 
+                daysMonthsYears="YEAR" 
+                error={errors.yearError}
+                value={yearInput}
+                onChange={updateYear}
+                placeHolder="YYYY"
+            />
             <Button /> 
         </form>
     );
