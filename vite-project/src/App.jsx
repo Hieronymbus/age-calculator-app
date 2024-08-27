@@ -15,7 +15,7 @@ function App() {
         <AgeOutput birthDate={birthDate}/> 
       </div>
     </div> 
-  )
-}
+  );
+};
 
-export default App
+export default App;

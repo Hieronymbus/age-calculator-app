@@ -11,6 +11,7 @@ function AgeOutput(props) {
 
   useEffect(() => {
     
+    
     if (day && month && year) {
 
       const currentDate = new Date();
@@ -34,21 +35,22 @@ function AgeOutput(props) {
 
       setTimeout(() => {
         setAnimate(false)
-      }, 1000);
+      }, 500);
+      
     }
   }, [day, month, year]);
 
   
   return (
     <div className="age-output-container">
-      <h1 className="age-output" >
-        <span className={`age-output-number ${animate ? "fade-in" : ""}`}>{ageYears}</span> years
+      <h1 className="age-output">
+        <span className={`age-output-number ${animate ? "shake" : ""}`}>{ageYears}</span> years
       </h1>
       <h1 className="age-output">
-        <span className={`age-output-number ${animate ? "fade-in" : ""}`}>{ageMonths}</span> months
+        <span className={`age-output-number ${animate ? "shake" : ""}`}>{ageMonths}</span> months
       </h1>
       <h1 className="age-output">
-        <span className={`age-output-number ${animate ? "fade-in" : ""}`}>{ageDays}</span> days
+        <span className={`age-output-number ${animate ? "shake" : ""}`}>{ageDays}</span> days
       </h1>
     </div>
   );
