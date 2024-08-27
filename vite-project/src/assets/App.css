@@ -47,18 +47,22 @@
 .form-label {
   display: flex;
   flex-direction: column;
+  color: rgb(101, 100, 100);
   gap:15px;
   font-family: "popBold";  
 }
 
 .form-input {
-    height: 50px;
+    height: 60px;
     width: 150px;
-    font-size: 20px;
+    font-size: 25px;
     font-family: "popBold";
     padding-left: 15px;
     border: 1px solid grey;
     border-radius: 10px ;
+    caret-color: #864DFF;
+    padding-left: 22px;
+  
 }
 .form-input:hover{
   cursor: pointer;
@@ -71,7 +75,7 @@
     border-radius: 50%; 
     position: absolute;  
     right:0;
-    bottom:-40px;
+    bottom:-43px;
     border: none; 
     height: 80px;
     width: 80px; 

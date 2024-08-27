@@ -123,6 +123,7 @@ function Form(props) {
                 value={dayInput}
                 onChange={updateDay}
                 placeHolder="DD"
+                autoFocus = {true}
             />
             <LabelInput 
                 daysMonthsYears="MONTH" 

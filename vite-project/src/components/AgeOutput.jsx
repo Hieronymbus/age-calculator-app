@@ -23,7 +23,6 @@ function AgeOutput(props) {
       let exactMonths = (daysLeftMinusYears - exactDays) / 31
       let exactYears = (Math.floor(totalDays) - daysLeftMinusYears) / 365
       
-
       setAgeDays(exactDays);
       setAgeMonths(exactMonths);
       setAgeYears(exactYears);
